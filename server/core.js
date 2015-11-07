@@ -2,6 +2,7 @@ var express = require('express'),
     elasticsearch = require('elasticsearch'),
     bodyParser = require('body-parser'),
     jade = require('jade'),
+    moment = require('moment'),
     // paypal = require('./paypal/paypal'),
     story = require('./story'),
     user = require('./user'),
@@ -41,8 +42,9 @@ app.post('/story', function (req, res) {
         res.send('failure');
         return;
     }
-    story.create(esClient, req.body);
-    res.send('success');
+    story.create(esClient, req.body, function(val) {
+        res.send(val);
+    });
 });
 
 app.get('/story', function(req, res) {
@@ -52,6 +54,9 @@ app.get('/story', function(req, res) {
     }
 
     story.get(esClient, req.query.id, function(val) {
+        if(val !== 404) {
+            val.daysUntilCourtDate = moment(val.courtDate, 'yyyy-MM-DD').fromNow();
+        }
         res.send(val);
     });
 });
@@ -213,7 +218,8 @@ app.get('/page', function (req, res) {
             commentBadges: val.commentBadges,
             caseUpdates: val.caseUpdates,
             donorPicture: val.donorPicture,
-            donorName: val.donorName
+            donorName: val.donorName,
+            donors: val.donors
         });
     });
 });

@@ -4,6 +4,7 @@
     "elasticsearch": "^3.0.1",
     "express": "^4.13.3",
     "jade": "^1.11.0",
+    "moment": "^2.10.6",
     "paypal-rest-sdk": "^1.6.3"
   }
 }

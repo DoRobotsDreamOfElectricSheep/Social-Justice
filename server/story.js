@@ -17,7 +17,7 @@ var get = function(esClient, storyID, callback) {
     }).then(function(resp) {
         callback(resp._source);
     },function(err, resp) {
-        callback('story-get() ' + err);
+        callback(404);
     });
 };
 
