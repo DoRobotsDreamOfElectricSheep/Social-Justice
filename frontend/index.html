@@ -145,7 +145,7 @@
             right: -31px;
             top: -20px;
             z-index: 100;
-            padding-left: 22px;
+            padding-left: 25px;
             padding-top: 22px;
             color: white;
             display:none;
@@ -361,7 +361,7 @@
             <div>
             <div class="court-info">
                 <div class="court-icon"></div>
-                <div class="days-left">Court in {{result._source.daysLeft}} days</div>
+                <div class="days-left">Court in {{result._source.daysUntilCourtDate}}</div>
                 <div class="court-location">{{result._source.courtLocation}}</div>
             </div>
             <div class="case-pledged"><div class="pledged-icon"></div><div class="pledged-amount">$ {{result._source.currentlyPledged}}</div></div>
