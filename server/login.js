@@ -1,3 +1,6 @@
+var user = require('./user');
+var lawyer = require('./lawyer');
+
 var attempt = function(esClient, username, password, callback) {
     esClient.get({
         index: 'accounts',
@@ -6,7 +9,22 @@ var attempt = function(esClient, username, password, callback) {
     }).then(function(resp) {
         if(resp.found) {
             if(resp._source.password === password) {
-                callback(resp._source.userType);
+                var caller;
+                userType = resp._source.userType;
+                if(userType === 'lawyer') {
+                    caller = lawyer;
+                } else {
+                    caller = user;
+                }
+
+                caller.get(esClient, username, function(val) {
+                    val.password = '*************';
+                    var response = {
+                        userType: userType,
+                        body: val
+                    };
+                    callback(response);
+                });
             } else {
                 callback(403); // access denied
             }
