@@ -5,7 +5,7 @@ var create = function(esClient, storyBody) {
         id: '2',
         body: storyBody
     }, function(err, resp) {
-        console.log('create() ' + err);
+        console.log('story-create() ' + err);
     });
 };
 
@@ -17,7 +17,7 @@ var get = function(esClient, storyID, callback) {
     }).then(function(resp) {
         callback(resp._source);
     },function(err, resp) {
-        callback(err);
+        callback('story-get() ' + err);
     });
 };
 
@@ -27,9 +27,9 @@ var search = function(esClient, body, callback) {
         type: 'story',
         q: 'title:test'
     }).then(function(resp) {
-        callback(resp);
+        callback(resp.hits.hits);
     }, function(err, resp) {
-        callback(err);
+        callback('story-search() ' + err);
     });
 };
 
