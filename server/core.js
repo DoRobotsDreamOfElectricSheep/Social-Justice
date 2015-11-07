@@ -109,16 +109,23 @@ app.post('/lawyer', function (req, res) {
         return;
     }
 
-    res.send();
+    lawyer.create(esClient, req.body, function(val) {
+        res.send(val);
+    });
 });
 
 app.get('/lawyer', function (req, res) {
-    if(!req.body) {
+    if(!Object.keys(req.query).length || req.query.id === undefined) {
         res.send('failure');
         return;
     }
 
-    res.send();
+    lawyer.get(esClient, req.query.id, function(val) {
+        if(val.password) {
+            val.password = '***********';
+        }
+        res.send(val);
+    });
 });
 
 app.post('/search/lawyers', function (req, res) {
@@ -127,7 +134,14 @@ app.post('/search/lawyers', function (req, res) {
         return;
     }
 
-    res.send();
+    lawyer.search(esClient, req.body, function(val){
+        val.forEach(function(item) {
+            if(item._source && item._source.password) {
+                item._source.password = '***********';
+            }
+        });
+        res.send(val);
+    });
 });
 
 
