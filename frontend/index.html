@@ -345,6 +345,32 @@
 
     </script>
     <div id="main-results">
+        <div ng-repeat="result in cases"  class="case-result result" data-case-id="{{result._source.id}}">
+            <div class="stars-icon" style="{{result.starStyle}}">{{result._source.stars}}</div>
+            <div class="inner-case-result">
+            <img class="case-picture" ng-src="{{result._source.doneeHeadshot}}"/>
+            <div class="case-title">{{result._source.storyTitle}}</div>
+            <div class="case-donation-info">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{result.progress}}" aria-valuemin="0" aria-valuemax="100" style="{{result.progressStyle}}">
+                        {{result.progress}} %
+                    </div>
+                </div>
+            </div>
+            <div class="case-description">{{result._source.storyDescription}}</div>
+            <div>
+            <div class="court-info">
+                <div class="court-icon"></div>
+                <div class="days-left">Court in {{result._source.daysUntilCourtDate}}</div>
+                <div class="court-location">{{result._source.courtLocation}}</div>
+            </div>
+            <div class="case-pledged"><div class="pledged-icon"></div><div class="pledged-amount">$ {{result._source.currentlyPledged}}</div></div>
+
+
+            <div class="case-views"><span class="views-icon">{{result._source.views}}</span></div>
+            </div>
+        </div>
+        </div>
         <div ng-repeat="result in lawyers"  class="case-result result" data-case-name="{{result._source.name}}">
             <div class="stars-icon" style="{{result.starStyle}}">{{result._source.stars}}</div>
             <div class="inner-case-result">
