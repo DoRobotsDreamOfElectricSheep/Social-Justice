@@ -1,11 +1,11 @@
-var create = function(esClient, storyBody) {
+var create = function(esClient, storyBody, callback) {
     esClient.create({
         index: 'stories',
         type: 'story',
         id: storyBody.id,
         body: storyBody
     }, function(err, resp) {
-        console.log('story-create() ' + err);
+        callback(resp);
     });
 };
 
@@ -25,7 +25,7 @@ var search = function(esClient, body, callback) {
     esClient.search({
         index: 'stories',
         type: 'story',
-        q: 'title:test'
+        q: 'storyTitle:' + body.keywords
     }).then(function(resp) {
         callback(resp.hits.hits);
     }, function(err, resp) {

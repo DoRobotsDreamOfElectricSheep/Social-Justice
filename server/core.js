@@ -2,7 +2,7 @@ var express = require('express'),
     elasticsearch = require('elasticsearch'),
     bodyParser = require('body-parser'),
     jade = require('jade'),
-    paypal = require('./paypal/paypal'),
+    // paypal = require('./paypal/paypal'),
     story = require('./story'),
     user = require('./user'),
     lawyer = require('./lawyer'),
@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+app.use(express.static(__dirname + '/frontend'));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -179,15 +180,15 @@ app.post('/login', function (req, res) {
 
 
 /********************* Payment Related Endpoints *********************/
-app.get('/payment', function (req, res) {
-    // if(!Object.keys(req.query).length || req.query.id === undefined) {
-    //     res.send('failure');
-    //     return;
-    // }
-    paypal.makePayment('aunwin90-buyer@gmail.com', 5.00, function(val) {
-        res.send(val);
-    });
-});
+// app.get('/payment', function (req, res) {
+//     // if(!Object.keys(req.query).length || req.query.id === undefined) {
+//     //     res.send('failure');
+//     //     return;
+//     // }
+//     paypal.makePayment('aunwin90-buyer@gmail.com', 5.00, function(val) {
+//         res.send(val);
+//     });
+// });
 
 
 /********************* Template Related Endpoints *********************/
