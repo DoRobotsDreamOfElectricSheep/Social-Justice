@@ -3,8 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-color: #DDD;
+            width: 600px;
+            position: relative;
+            margin: auto;
+        }
+        header{
+            margin: auto;
+            background: red;
+            position: relative;
+            height: 150px;
+        }
+        #main-results{
+            background: green;
+            height: 600px;
+            margin-top: 10px;
+            padding: 0;
+        }
+        #search-bar{
+            width: 500px;
+            margin: 50px;
+            position: absolute;
+        }
+    </style>
 </head>
 <body>
-<header></header>
+<header>
+    <div id="search-bar">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..."/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Cases</button>
+                <button class="btn btn-default" type="button">Lawyers</button>
+            </span>
+        </div>
+    </div>
+</header>
+    <div id="main-results" class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-body">
+            <div class="case-result row">
+                <img class="case-picture" src="www.google.com"/>
+                <div class="case-title">Help I need money now</div>
+                <div class="case-donation-info">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            60%
+                        </div>
+                    </div>
+                    <span class="case-pledged"><span>Pledged:</span>100</span>
+                </div>
+                <div class="case-location">seattle, wa</div>
+                <div class="case-stars"><span class="stars-icon"></span></div>
+                <div class="case-views"><span class="views-icon">200</span></div>
+                <div class="case-days-left">5</div>
+            </div>
+            <div class="lawyer-result row">
+                <img class="lawyer-picture" src="www.google.com"/>
+                <div class="lawyer-title">Help I need money now</div>
+                <div class="lawyer-location">seattle, wa</div>
+                <div class="layer-stars"><span class="stars-icon"></span></div>
+                <span class="lawyer-pledged"><span class="lawyer-pledged-icon"></span>1000</span>
+            </div>
+        </div>
+            </div>
+    </div>
 </body>
 </html>
