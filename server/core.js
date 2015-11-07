@@ -114,6 +114,17 @@ app.post('/search/lawyers', function (req, res) {
     res.send();
 });
 
+
+/********************* Management Related Endpoints *********************/
+app.post('/login', function (req, res) {
+    if(!req.body) {
+        res.send('failure');
+        return;
+    }
+
+    res.send();
+});
+
 var server = app.listen(3030, function () {
     var host = server.address().address;
     var port = server.address().port;
