@@ -295,7 +295,7 @@
                     .success(function (data) {
                         for(var i = 0; i < data.length;i++) {
                             data[i].progress = data[i]._source.currentlyPledged / data[i]._source.goal * 100;
-                            data[i].progressStyle = "width: " + data[0].progress + "%";
+                            data[i].progressStyle = "width: " + data[i].progress + "%";
                             if(data[0]._source.stars)
                                 data[0].starStyle="display:block";
                         }
