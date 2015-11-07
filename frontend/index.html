@@ -1,69 +1,77 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Convo Search</title>
-    <meta name="description" content="">
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-
-    <link rel="stylesheet" href="bootstrap/3.3.2/css/bootstrap.min.css" />
-    <script src="bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="css/convo-search.css">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-color: #DDD;
+            width: 600px;
+            position: relative;
+            margin: auto;
+        }
+        header{
+            margin: auto;
+            background: red;
+            position: relative;
+            height: 150px;
+        }
+        #main-results{
+            background: green;
+            height: 600px;
+            margin-top: 10px;
+            padding: 0;
+        }
+        #search-bar{
+            width: 500px;
+            margin: 50px;
+            position: absolute;
+        }
+    </style>
 </head>
-<body class="clearfix">
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-<div id="filters" class="container-fluid">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-2">
-                    <h4>From Date</h4>
-                    <div class="input-group date" id='from-date'>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-time green"></span></span>
-                        <input type="text" id="node-life-span" class="form-control" placeholder="Seconds" aria-describedby="basic-addon1">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <h4>To Date</h4>
-                    <div class="input-group date" id='to-date'>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-time red"></span></span>
-                        <input type="text" id="green-node-duplication" class="form-control" placeholder="Seconds" aria-describedby="basic-addon1">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <h4>Keywords</h4>
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-zoom-in"></span></span>
-                        <input type="text" id="red-node-duplication" class="form-control" placeholder="Keywords" aria-describedby="basic-addon1">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <h4 class="white">Search</h4>
-                    <div class="input-group">
-                        <button type="button" id="reset-button" class="btn btn-success">Search</button>
-                    </div>
-                </div>
-                <div class="col-md-2 col-md-offset-2 col-sm-4 col-sm-offset-2 text-center">
-                    <h4>Active Search</h4>
-                    <div id="control-buttons" class="btn-group" role="group" aria-label="...">
-                        <button type="button" id="reset-button" class="btn btn-default"><span class="glyphicon glyphicon-refresh orange"></span></button>
-                    </div>
-                </div>
-            </div>
-
+<body>
+<header>
+    <div id="search-bar">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..."/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Cases</button>
+                <button class="btn btn-default" type="button">Lawyers</button>
+            </span>
         </div>
     </div>
-</div>
+</header>
+    <div id="main-results" class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-body">
+            <div class="case-result row">
+                <img class="case-picture" src="www.google.com"/>
+                <div class="case-title">Help I need money now</div>
+                <div class="case-donation-info">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            60%
+                        </div>
+                    </div>
+                    <span class="case-pledged"><span>Pledged:</span>100</span>
+                </div>
+                <div class="case-location">seattle, wa</div>
+                <div class="case-stars"><span class="stars-icon"></span></div>
+                <div class="case-views"><span class="views-icon">200</span></div>
+                <div class="case-days-left">5</div>
+            </div>
+            <div class="lawyer-result row">
+                <img class="lawyer-picture" src="www.google.com"/>
+                <div class="lawyer-title">Help I need money now</div>
+                <div class="lawyer-location">seattle, wa</div>
+                <div class="layer-stars"><span class="stars-icon"></span></div>
+                <span class="lawyer-pledged"><span class="lawyer-pledged-icon"></span>1000</span>
+            </div>
+        </div>
+            </div>
+    </div>
 </body>
 </html>
