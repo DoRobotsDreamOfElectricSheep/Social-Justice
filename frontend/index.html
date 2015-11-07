@@ -233,21 +233,32 @@
             <div class="case-views"><span class="views-icon">{{result._source.views}}</span></div>
             </div>
         </div>
-
-        <div ng-repeat="result in lawyers" class="lawyer-result result">
-            <img class="lawyer-picture picture" src="kermit.jpeg"/>
-            <div class="lawyer-title">{{result._source.title}}</div>
-            <div class="lawyer-location">seattle, wa</div>
-            <div class="layer-stars"><span class="stars-icon"></span></div>
-            <span class="lawyer-pledged"><span class="lawyer-pledged-icon"></span>1000</span>
         </div>
-        </div>
+        <div ng-repeat="result in lawyers"  class="case-result result" data-case-name="{{result._source.name}}">
+            <div class="stars-icon" style="{{result.starStyle}}">{{result._source.stars}}</div>
+            <div class="inner-case-result">
+                <img class="case-picture" ng-src="{{result._source.lawyerPicture}}"/>
+                <div class="case-title">{{result._source.name}}</div>
+                <div class="case-title">{{result._source.title}}</div>
+                <div class="case-description">{{result._source.description}}</div>
+                <div>
+                    <div class="court-info">
+                        <div class="court-icon"></div>
+                        <div class="days-left">Years in practice: {{result._source.practiceYears}}</div>
+                        <div class="court-location">{{result._source.location}}</div>
+                    </div>
+                    <div class="case-pledged"><div class="pledged-icon"></div><div class="pledged-amount">$ {{result._source.funds}}</div></div>
 
+
+                    <div class="case-views"><span class="views-icon">{{result._source.views}}</span></div>
+                </div>
+            </div>
     </div>
 </body>
 <script>
     var serviceUrl = "http://52.32.221.20:3030/search/stories";
     var storyUrl = "http://52.32.221.20:3030/search/stories";
+    var lawyerUrl = "http://52.32.221.20:3030/search/lawyers";
 
     var app = angular.module('justiceApp', []);
     app.controller('justiceController', function ($scope,$http) {
@@ -305,13 +316,46 @@
 
         };
 
+        /*
         $scope.getLawyers = function () {
-            $http.post(serviceUrl, angular.toJson($scope.search))
+
+            var data =
+            {
+                "_index": "lawyers",
+                "_type": "lawyer",
+                "_id": "bob",
+                "_score": 1,
+                "_source": {
+                    "name": "bob",
+                    "password": "123",
+                    "stars": 4,
+                    "title": "lawyer",
+                    "description": "i am a lawyer",
+                    "funds": 5000
+                }
+            }
+
+                $scope.lawyers = data;
+
+
+
+
+
+            //.error(function(response) { handleFailedRequest(response, "createSiteAlert"); });
+        };
+
+        */
+        $scope.getLawyers = function () {
+            var lawyer = {
+                name:$scope.search.keywords
+            };
+
+            $http.post(lawyerUrl, angular.toJson(lawyer))
                     .success(function (data) {
                         $scope.lawyers = data;
                     });
-            //.error(function(response) { handleFailedRequest(response, "createSiteAlert"); });
-        };
+
+        }
     });
 
     $("#main-results").on("click", ".case-result", function(){

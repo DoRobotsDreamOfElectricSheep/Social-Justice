@@ -71,3 +71,8 @@ header{
     color: white;
     padding: 6px;
 }
+
+.progress-bar{
+    background-color: #1BD218;
+    line-height: 16px;
+}
