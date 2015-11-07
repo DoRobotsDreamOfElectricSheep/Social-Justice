@@ -1,0 +1,55 @@
+doctype
+html(lang="en")
+  head
+      meta(charset='UTF-8')
+      title story
+      script(src='https://code.jquery.com/jquery-2.1.4.min.js')
+      link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+  body
+      header
+        span
+          span#user-picture #{username}
+      #content
+        #left-rail
+          image#donee-head-shot(src='#{doneeHeadshot}')
+          #donee-name #{doneeName}
+          #donee-location
+            span.location-icon #{doneeLocation}
+
+        #main
+          #story
+            #story-photo
+              iframe(width='480', height='300', src='#{storyVideo}', frameborder='0', allowfullscreen='')
+            #story-stats
+              #court-info
+                #court-icon
+                #court-date
+                  span#court-date-icon #{courtDate}
+                #court-location
+                  span.location-icon #{courtLocation}
+              #donation-info
+                .progress
+                  .progress-bar(role='progressbar', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100', style='width: 60%;')
+                    | 60%
+                span#pledged  Pledged: #{currentlyPledged}
+                span#goal Goal: #{goal}
+            h4#story-title #{storyTitle}
+            #story-description #{storyDescription}
+          #tabs
+            span#story-tab.tab Story
+            span#comments-tab.tab
+                | Comments
+              span.badge #{commentBadges}
+            span#updates-tab.tab
+                | Updates
+              span.badge #{caseUpdates}
+          #donors
+            h4 Donors
+            .donor
+                image.donor-picture(src='#{donorPicture}')
+                .donor-name #{donorName}
+        #right-rail
+          span#favorite Favorite
+          span#read Mark As Read
+          span#hide
