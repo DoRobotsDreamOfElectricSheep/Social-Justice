@@ -55,7 +55,7 @@ app.get('/story', function(req, res) {
 
     story.get(esClient, req.query.id, function(val) {
         if(val !== 404) {
-            val.daysUntilCourtDate = moment(val.courtDate, 'yyyy-MM-DD').fromNow();
+            val.daysUntilCourtDate = moment(val.courtDate, 'yyyy-MM-DD').fromNow(true);
         }
         res.send(val);
     });
