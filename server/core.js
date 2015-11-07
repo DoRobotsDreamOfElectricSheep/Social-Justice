@@ -24,6 +24,7 @@ var esClient = new elasticsearch.Client({
         host: elasticsearchEndpoint
 });
 
+/********************* Story Related Endpoints *********************/
 app.post('/story', function (req, res) {
     if(!req.body) {
         res.send('failure');
@@ -55,7 +56,9 @@ app.post('/search/stories', function (req, res) {
     });
 });
 
-app.post('/search/user', function (req, res) {
+
+/********************* User Related Endpoints *********************/
+app.post('/user', function (req, res) {
     if(!req.body) {
         res.send('failure');
         return;
@@ -64,7 +67,45 @@ app.post('/search/user', function (req, res) {
     res.send();
 });
 
-app.post('/search/lawyer', function (req, res) {
+app.get('/user', function (req, res) {
+    if(!req.body) {
+        res.send('failure');
+        return;
+    }
+
+    res.send();
+});
+
+app.post('/search/users', function (req, res) {
+    if(!req.body) {
+        res.send('failure');
+        return;
+    }
+
+    res.send();
+});
+
+
+/********************* Lawyer Related Endpoints *********************/
+app.post('/lawyer', function (req, res) {
+    if(!req.body) {
+        res.send('failure');
+        return;
+    }
+
+    res.send();
+});
+
+app.get('/lawyer', function (req, res) {
+    if(!req.body) {
+        res.send('failure');
+        return;
+    }
+
+    res.send();
+});
+
+app.post('/search/lawyers', function (req, res) {
     if(!req.body) {
         res.send('failure');
         return;
