@@ -208,8 +208,8 @@
     </div>
 </header>
     <div id="main-results">
-        <div ng-repeat="result in cases"  class="case-result result">
-            <div class="stars-icon">{{result._source.stars}}</div>
+        <div ng-repeat="result in cases"  class="case-result result" data-case-id="{{result._source.id}}">
+            <div class="stars-icon" style="{{result.starStyle}}">{{result._source.stars}}</div>
             <div class="inner-case-result">
             <img class="case-picture" ng-src="{{result._source.doneeHeadshot}}"/>
             <div class="case-title">{{result._source.storyTitle}}</div>
@@ -236,7 +236,7 @@
 
         <div ng-repeat="result in lawyers" class="lawyer-result result">
             <img class="lawyer-picture picture" src="kermit.jpeg"/>
-            <div class="lawyer-title">I'm a lawyer</div>
+            <div class="lawyer-title">{{result._source.title}}</div>
             <div class="lawyer-location">seattle, wa</div>
             <div class="layer-stars"><span class="stars-icon"></span></div>
             <span class="lawyer-pledged"><span class="lawyer-pledged-icon"></span>1000</span>
@@ -247,6 +247,7 @@
 </body>
 <script>
     var serviceUrl = "http://52.32.221.20:3030/search/stories";
+    var storyUrl = "http://52.32.221.20:3030/search/stories";
 
     var app = angular.module('justiceApp', []);
     app.controller('justiceController', function ($scope,$http) {
@@ -256,6 +257,7 @@
 
         $scope.getCases = function () {
             var keywords = angular.toJson($scope.search);
+/*
             data = [{
                 "_index": "stories",
                 "_type": "story",
@@ -287,17 +289,20 @@
 
 
             $scope.cases = data;
-            /*
+
+            */
             $http.post(serviceUrl, angular.toJson($scope.search))
                     .success(function (data) {
                         for(var i = 0; i < data.length;i++) {
                             data[i].progress = data[i]._source.currentlyPledged / data[i]._source.goal * 100;
-                            data[i].progressStyle = "{width:" + data[i].progress + "%}";
+                            data[i].progressStyle = "width: " + data[0].progress + "%";
+                            if(data[0]._source.stars)
+                                data[0].starStyle="display:block";
                         }
                         $scope.cases = data;
                     });
             //.error(function(response) { handleFailedRequest(response, "createSiteAlert"); });
-            */
+
         };
 
         $scope.getLawyers = function () {
@@ -307,6 +312,10 @@
                     });
             //.error(function(response) { handleFailedRequest(response, "createSiteAlert"); });
         };
+    });
+
+    $("#main-results").on("click", ".case-result", function(){
+        window.location.href = "http://52.32.221.20:3030/page?id=" + $(this).attr("data-case-id");
     });
 </script>
 </html>
