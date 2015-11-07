@@ -6,72 +6,265 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <style>
         body{
-            background-color: #DDD;
-            width: 600px;
+
             position: relative;
-            margin: auto;
+
+            background: #F9F9F9;
         }
+
+        #collage{
+            position: absolute;
+            overflow: hidden;
+            width:100%
+        }
+
+        #collage > div {
+            width: 5%;
+            height: 75px;
+            background-position: center;
+            background-size: contain;
+            float: left;
+        }
+
         header{
-            margin: auto;
+            width:100%;
             background: red;
             position: relative;
             height: 150px;
+            margin-bottom: 15px;
         }
+
         #main-results{
-            background: green;
+            position: relative;
+            width: 600px;
             height: 600px;
             margin-top: 10px;
-            padding: 0;
+            margin: auto;
         }
+
+        img{
+            width: 180px;
+            height: 140px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        .case-pledged{
+            float: right;
+            color: #1BD218;
+            font-size: 14px;
+            position: relative;
+            font-size: 17px;
+        }
+
+        .pledged-amount{
+            margin-left: 45px;
+            padding-top: 9px;
+        }
+
+        .pledged-icon{
+            background: url(piggy.png);
+            width: 40px;
+            height: 40px;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+        }
+
+        .progress{
+            margin-bottom: 0;
+            margin: 5px 0;
+            width: 400px;
+            height: 16px;
+        }
+
+        .progress-bar{
+            background-color: #1BD218;
+            line-height: 16px;
+        }
+
+        .result{
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 4px;
+            overflow: auto;
+            padding-right: 10px;
+            position: relative;
+            box-shadow: 6px 6px 5px #888888;
+        }
+        #screen{
+            position: absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            background-color: rgba(36, 144, 255, 0.62);
+            z-index: 12;
+        }
+
         #search-bar{
             width: 500px;
-            margin: 50px;
-            position: absolute;
+            margin: auto;
+            padding-top: 30px;
+        }
+
+        #search-bar .input-group{
+            z-index: 100;
+        }
+        .stars-icon{
+            width:13px;
+            height:13px;
+            background-image: url(star.png);
+            display: inline-block;
         }
     </style>
 </head>
-<body>
+<body ng-app="justiceApp" ng-controller="justiceController">
 <header>
+    <div id="screen"></div>
+    <div id="collage">
+        <div style="background-image: url(spot1.jpg)"></div>
+        <div style="background-image: url(spot2.jpg)"></div>
+        <div style="background-image: url(spot3.jpg)"></div>
+        <div style="background-image: url(spot4.jpg)"></div>
+        <div style="background-image: url(spot5.jpg)"></div>
+        <div style="background-image: url(spot6.jpg)"></div>
+        <div style="background-image: url(spot7.jpg)"></div>
+        <div style="background-image: url(spot8.jpg)"></div>
+        <div style="background-image: url(spot9.jpg)"></div>
+        <div style="background-image: url(spot10.jpg)"></div>
+        <div style="background-image: url(spot11.jpg)"></div>
+        <div style="background-image: url(spot2.jpg)"></div>
+        <div style="background-image: url(spot5.jpg)"></div>
+        <div style="background-image: url(spot6.jpg)"></div>
+        <div style="background-image: url(spot1.jpg)"></div>
+        <div style="background-image: url(spot3.jpg)"></div>
+        <div style="background-image: url(spot1.jpg)"></div>
+        <div style="background-image: url(spot7.jpg)"></div>
+        <div style="background-image: url(spot11.jpg)"></div>
+        <div style="background-image: url(spot8.jpg)"></div>
+        <div style="background-image: url(spot1.jpg)"></div>
+        <div style="background-image: url(spot6.jpg)"></div>
+        <div style="background-image: url(spot9.jpg)"></div>
+        <div style="background-image: url(spot1.jpg)"></div>
+        <div style="background-image: url(spot7.jpg)"></div>
+        <div style="background-image: url(spot5.jpg)"></div>
+        <div style="background-image: url(spot2.jpg)"></div>
+        <div style="background-image: url(spot4.jpg)"></div>
+        <div style="background-image: url(spot7.jpg)"></div>
+        <div style="background-image: url(spot11.jpg)"></div>
+        <div style="background-image: url(spot10.jpg)"></div>
+        <div style="background-image: url(spot9.jpg)"></div>
+        <div style="background-image: url(spot8.jpg)"></div>
+        <div style="background-image: url(spot5.jpg)"></div>
+        <div style="background-image: url(spot6.jpg)"></div>
+        <div style="background-image: url(spot4.jpg)"></div>
+        <div style="background-image: url(spot3.jpg)"></div>
+        <div style="background-image: url(spot7.jpg)"></div>
+        <div style="background-image: url(spot2.jpg)"></div>
+        <div style="background-image: url(spot1.jpg)"></div>
+    </div>
     <div id="search-bar">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for..."/>
+            <input ng-model="search.keywords" type="text" class="form-control" placeholder="Search for..."/>
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Cases</button>
-                <button class="btn btn-default" type="button">Lawyers</button>
+                <button ng-click="getCases()" id="search-cases" class="btn btn-default" type="button">Cases</button>
+                <button ng-click="getLawyers()" id="search-lawyers" class="btn btn-default" type="button">Lawyers</button>
             </span>
         </div>
     </div>
 </header>
-    <div id="main-results" class="container-fluid">
-        <div class="panel panel-default">
-            <div class="panel-body">
-            <div class="case-result row">
-                <img class="case-picture" src="www.google.com"/>
-                <div class="case-title">Help I need money now</div>
-                <div class="case-donation-info">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                            60%
-                        </div>
+    <div id="main-results">
+        <div ng-repeat="result in cases"  class="case-result result">
+            <img class="case-picture" ng-src="{{result._source.doneeHeadshot}}"/>
+            <div class="case-title">{{result._source.storyTitle}}</div>
+            <div class="case-donation-info">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{result.progress}}" aria-valuemin="0" aria-valuemax="100" style="{{result.progressStyle}}">
+                        {{result.progress}}
                     </div>
-                    <span class="case-pledged"><span>Pledged:</span>100</span>
                 </div>
-                <div class="case-location">seattle, wa</div>
-                <div class="case-stars"><span class="stars-icon"></span></div>
-                <div class="case-views"><span class="views-icon">200</span></div>
-                <div class="case-days-left">5</div>
             </div>
-            <div class="lawyer-result row">
-                <img class="lawyer-picture" src="www.google.com"/>
-                <div class="lawyer-title">Help I need money now</div>
-                <div class="lawyer-location">seattle, wa</div>
-                <div class="layer-stars"><span class="stars-icon"></span></div>
-                <span class="lawyer-pledged"><span class="lawyer-pledged-icon"></span>1000</span>
-            </div>
+            <div class="case-pledged"><div class="pledged-icon"></div><div class="pledged-amount">$ {{result._source.currentlyPledged}}</div></div>
+            <div class="case-location">{{result.courtLocation}}</div>
+            <div class="case-stars"><div class="stars-icon"></div></div>
+            <div class="case-views"><span class="views-icon">{{result._source.views}}</span></div>
+            <div class="case-days-left">{{results.daysLeft}}</div>
         </div>
-            </div>
+
+        <div ng-repeat="result in lawyers" class="lawyer-result result">
+            <img class="lawyer-picture picture" src="kermit.jpeg"/>
+            <div class="lawyer-title">I'm a lawyer</div>
+            <div class="lawyer-location">seattle, wa</div>
+            <div class="layer-stars"><span class="stars-icon"></span></div>
+            <span class="lawyer-pledged"><span class="lawyer-pledged-icon"></span>1000</span>
+        </div>
+
     </div>
 </body>
+<script>
+    var serviceUrl = "http://52.32.221.20:3030/search/stories";
+
+    var app = angular.module('justiceApp', []);
+    app.controller('justiceController', function ($scope,$http) {
+        $scope.cases = []
+        $scope.lawyers = []
+        $scope.search = {keywords: ""}
+
+        $scope.getCases = function () {
+            var keywords = angular.toJson($scope.search);
+            data = [{
+                "_index": "stories",
+                "_type": "story",
+                "_id": "2",
+                "_score": 0.2972674,
+                "_source": {
+                    "id": 2,
+                    "username": "james bond",
+                    "doneeHeadshot": "http://images-cdn.moviepilot.com/image/upload/v1426601393/danielcraigasbond-sorry-idris-why-daniel-craig-isn-t-leaving-james-bond-and-shouldn-t-jpeg-209169.jpg",
+                    "storyVideo": "https://www.youtube.com/embed/Bpcupsxy0T8",
+                    "doneeLocation": "Seattle, WA",
+                    "courtDate": "2015-08-04",
+                    "courtLocation": "Tacoma, WA",
+                    "currentlyPledged": "60",
+                    "goal": "100",
+                    "storyTitle": "Killed some people.",
+                    "storyDescription": "I shot someone",
+                    "commentBadges": "1000",
+                    "caseUpdates": "0",
+                    "donorPicture": "http://i.kinja-img.com/gawker-media/image/upload/s--x6dDPpBh--/184ow2twmecddjpg.jpg",
+                    "donorName": "M"
+                }
+            }];
+
+                data[0].progress = data[0]._source.currentlyPledged / data[0]._source.goal * 100;
+                data[0].progressStyle ="width: " + data[0].progress + "%";
+
+            $scope.cases = data;
+            /*
+            $http.post(serviceUrl, angular.toJson($scope.search))
+                    .success(function (data) {
+                        for(var i = 0; i < data.length;i++) {
+                            data[i].progress = data[i]._source.currentlyPledged / data[i]._source.goal * 100;
+                            data[i].progressStyle = "{width:" + data[i].progress + "%}";
+                        }
+                        $scope.cases = data;
+                    });
+            //.error(function(response) { handleFailedRequest(response, "createSiteAlert"); });
+            */
+        };
+
+        $scope.getLawyers = function () {
+            $http.post(serviceUrl, angular.toJson($scope.search))
+                    .success(function (data) {
+                        $scope.lawyers = data;
+                    });
+            //.error(function(response) { handleFailedRequest(response, "createSiteAlert"); });
+        };
+    });
+</script>
 </html>
