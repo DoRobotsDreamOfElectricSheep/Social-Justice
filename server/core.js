@@ -1,6 +1,7 @@
 var express = require('express'),
     elasticsearch = require('elasticsearch'),
     bodyParser = require('body-parser'),
+    jade = require('jade'),
     story = require('./story'),
     user = require('./user'),
     lawyer = require('./lawyer'),
@@ -22,6 +23,10 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+// set up jade
+app.set('views', './templates');
+app.set('view engine', 'jade');
 
 // init elasticsearch
 var esClient = new elasticsearch.Client({
@@ -168,6 +173,19 @@ app.post('/login', function (req, res) {
         }
 
         res.send(val); // user type will be sent on success
+    });
+});
+
+
+/********************* Template Related Endpoints *********************/
+app.get('/page', function (req, res) {
+    if(!Object.keys(req.query).length || req.query.id === undefined) {
+        res.send('failure');
+        return;
+    }
+
+    res.render('story', {
+        
     });
 });
 
