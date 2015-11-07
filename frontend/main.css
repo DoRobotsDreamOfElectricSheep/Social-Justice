@@ -1,0 +1,73 @@
+
+body{
+    background: #F4F4F4;
+
+}
+
+.badge{
+    background-color: white;
+    color: #00AFF0;
+}
+#content{
+    margin: auto;
+    text-align: center;
+    width:800px;
+}
+
+#comments-tab{
+    border-style: solid;
+    border-width: 0 2px;
+    padding: 0 4px;
+}
+
+#donee-head-shot{
+    height: 100px;
+    width: 150px;
+}
+
+#donors{
+    border: 2px solid white;
+    text-align: left;
+}
+#donors h4{
+    margin-top: 0px;
+    background-color: white
+}
+
+h4{
+    color: #00AFF0;
+}
+
+header{
+    margin-bottom: 10px;
+}
+#left-rail, #right-rail{
+    background-color: white;
+    float: left;
+    width: 150px;
+}
+
+#main{
+    float: left;
+    margin: 0 10px;
+    width: 480px;
+}
+
+#story{
+    background-color: white;
+}
+
+#story-description{
+    margin: 8px 0px 6px 0;
+}
+
+#story-photo{
+    background: blue;
+    height: 300px;
+}
+
+#tabs {
+    background: #00AFF0;
+    color: white;
+    padding: 6px;
+}

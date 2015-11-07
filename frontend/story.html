@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+<header>
+    <span><span id="user-picture"></span>User Name</span>
+</header>
+<div id="content">
+    <div id="left-rail">
+        <image src="www.google.com" id="donee-head-shot"></image>
+        <div id="donee-name">Carrot Top</div>
+        <div id="donee-location"><span class="location-icon"></span>Seattle, Wa</div>
+    </div>
+    <div id="main">
+        <div id="story">
+            <div id="story-photo">
+                <iframe width="480" height="300" src="https://www.youtube.com/embed/8DN3ndUdwTE" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div id="story-stats">
+                <div id="court-info">
+                    <div id="court-icon"></div>
+                    <div id="court-date"><span id="court-date-icon"></span>10/20/2015</div>
+                    <div id="court-location"><span class="location-icon"></span>seattle, wa</div>
+                </div>
+                <div id="donation-info">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            60%
+                        </div>
+                    </div>
+                    <span id="pledged"> Pledged: 100</span>
+                    <span id="goal">Goal: 1,000</span>
+                </div>
+            </div>
+            <h4 id="story-title">Title of my story</h4>
+            <div id="story-description">This is the description of my story that is a really long story so that we can test the wrapping of this div</div>
+
+        </div>
+
+        <div id="tabs">
+            <span id="story-tab" class="tab">Story</span>
+            <span id="comments-tab" class="tab">Comments <span class="badge">23</span></span>
+            <span id="updates-tab" class="tab">Updates <span class="badge">1</span></span>
+        </div>
+
+        <div id="donors">
+            <h4>Donors</h4>
+            <div class="donor">  <!- array of donors -->
+                <img class="donor-picture" src="www.google.com"/>
+                <div class="donor-name"></div>
+            </div>
+        </div>
+    </div>
+    <div id="right-rail">
+        <span id="favorite">Favorite</span>
+        <span id="read">Mark As Read</span>
+        <span id="hide"></span>
+    </div>
+</div>
+</body>
+</html>
