@@ -2,7 +2,7 @@ var create = function(esClient, storyBody) {
     esClient.create({
         index: 'stories',
         type: 'story',
-        id: '2',
+        id: storyBody.id,
         body: storyBody
     }, function(err, resp) {
         console.log('story-create() ' + err);

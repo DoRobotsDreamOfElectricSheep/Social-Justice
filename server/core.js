@@ -2,6 +2,7 @@ var express = require('express'),
     elasticsearch = require('elasticsearch'),
     bodyParser = require('body-parser'),
     jade = require('jade'),
+    paypal = require('./paypal/paypal'),
     story = require('./story'),
     user = require('./user'),
     lawyer = require('./lawyer'),
@@ -177,6 +178,18 @@ app.post('/login', function (req, res) {
 });
 
 
+/********************* Payment Related Endpoints *********************/
+app.get('/payment', function (req, res) {
+    // if(!Object.keys(req.query).length || req.query.id === undefined) {
+    //     res.send('failure');
+    //     return;
+    // }
+    paypal.makePayment('aunwin90-buyer@gmail.com', 5.00, function(val) {
+        res.send(val);
+    });
+});
+
+
 /********************* Template Related Endpoints *********************/
 app.get('/page', function (req, res) {
     if(!Object.keys(req.query).length || req.query.id === undefined) {
@@ -184,8 +197,23 @@ app.get('/page', function (req, res) {
         return;
     }
 
-    res.render('story', {
-        
+    story.get(esClient, req.query.id, function(val) {
+        res.render('story', {
+            username: val.username,
+            doneeHeadshot: val.doneeHeadshot,
+            storyVideo: val.storyVideo,
+            doneeLocation: val.doneeLocation,
+            courtDate: val.courtDate,
+            courtLocation: val.courtLocation,
+            currentlyPledged: val.currentlyPledged,
+            goal: val.goal,
+            storyTitle: val.storyTitle,
+            storyDescription: val.storyDescription,
+            commentBadges: val.commentBadges,
+            caseUpdates: val.caseUpdates,
+            donorPicture: val.donorPicture,
+            donorName: val.donorName
+        });
     });
 });
 
