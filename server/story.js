@@ -1,5 +1,3 @@
-var esClient;
-
 var create = function(esClient, storyBody) {
     esClient.create({
         index: 'stories',
