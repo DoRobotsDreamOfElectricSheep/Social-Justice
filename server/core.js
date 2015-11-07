@@ -70,7 +70,7 @@ app.post('/search/stories', function (req, res) {
     story.search(esClient, req.body, function(val){
         val.forEach(function(item) {
             if(item._source) {
-                item._source.daysUntilCourtDate = moment(val.courtDate, 'yyyy-MM-DD').fromNow(true);
+                item._source.daysUntilCourtDate = moment(item._source.courtDate, 'yyyy-MM-DD').fromNow(true);
             }
         });
         res.send(val);
