@@ -25,7 +25,7 @@ var search = function(esClient, body, callback) {
     esClient.search({
         index: 'stories',
         type: 'story',
-        q: ''
+        q: 'storyTitle:' + body.keywords
     }).then(function(resp) {
         callback(resp.hits.hits);
     }, function(err, resp) {
