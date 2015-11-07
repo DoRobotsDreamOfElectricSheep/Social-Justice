@@ -29,6 +29,18 @@
             float: left;
         }
 
+        .court-icon{
+            float:left;
+            background-image: url(court.svg);
+            width:40px;
+            height:40px;
+        }
+
+        .court-info{
+            float: left;
+            width:  172px;
+        }
+
         header{
             width:100%;
             background: red;
@@ -52,6 +64,10 @@
             margin-right: 10px;
         }
 
+        .case-description{
+            min-height: 52px;
+            color: gray;
+        }
         .case-pledged{
             float: right;
             color: #1BD218;
@@ -59,7 +75,11 @@
             position: relative;
             font-size: 17px;
         }
-
+        
+        .inner-case-result{
+            overflow: hidden;
+        }
+        
         .pledged-amount{
             margin-left: 45px;
             padding-top: 9px;
@@ -91,7 +111,6 @@
             margin-bottom: 10px;
             background-color: white;
             border-radius: 4px;
-            overflow: auto;
             padding-right: 10px;
             position: relative;
             box-shadow: 6px 6px 5px #888888;
@@ -116,10 +135,20 @@
             z-index: 100;
         }
         .stars-icon{
-            width:13px;
-            height:13px;
+            width: 59px;
+            height: 66px;
             background-image: url(star.png);
-            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            /* display: inline-block; */
+            position: absolute;
+            right: -31px;
+            top: -20px;
+            z-index: 100;
+            padding-left: 22px;
+            padding-top: 22px;
+            color: white;
+            display:none;
         }
     </style>
 </head>
@@ -180,20 +209,29 @@
 </header>
     <div id="main-results">
         <div ng-repeat="result in cases"  class="case-result result">
+            <div class="stars-icon">{{result._source.stars}}</div>
+            <div class="inner-case-result">
             <img class="case-picture" ng-src="{{result._source.doneeHeadshot}}"/>
             <div class="case-title">{{result._source.storyTitle}}</div>
             <div class="case-donation-info">
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{result.progress}}" aria-valuemin="0" aria-valuemax="100" style="{{result.progressStyle}}">
-                        {{result.progress}}
+                        {{result.progress}} %
                     </div>
                 </div>
             </div>
+            <div class="case-description">{{result._source.storyDescription}}</div>
+            <div>
+            <div class="court-info">
+                <div class="court-icon"></div>
+                <div class="days-left">Court in {{result._source.daysLeft}} days</div>
+                <div class="court-location">{{result._source.courtLocation}}</div>
+            </div>
             <div class="case-pledged"><div class="pledged-icon"></div><div class="pledged-amount">$ {{result._source.currentlyPledged}}</div></div>
-            <div class="case-location">{{result.courtLocation}}</div>
-            <div class="case-stars"><div class="stars-icon"></div></div>
+
+
             <div class="case-views"><span class="views-icon">{{result._source.views}}</span></div>
-            <div class="case-days-left">{{results.daysLeft}}</div>
+            </div>
         </div>
 
         <div ng-repeat="result in lawyers" class="lawyer-result result">
@@ -202,6 +240,7 @@
             <div class="lawyer-location">seattle, wa</div>
             <div class="layer-stars"><span class="stars-icon"></span></div>
             <span class="lawyer-pledged"><span class="lawyer-pledged-icon"></span>1000</span>
+        </div>
         </div>
 
     </div>
@@ -243,6 +282,9 @@
 
                 data[0].progress = data[0]._source.currentlyPledged / data[0]._source.goal * 100;
                 data[0].progressStyle ="width: " + data[0].progress + "%";
+                if(data[0]._source.stars)
+                    data[0].starStyle="display:block";
+
 
             $scope.cases = data;
             /*
