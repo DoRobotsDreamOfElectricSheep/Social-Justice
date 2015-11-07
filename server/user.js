@@ -1,13 +1,15 @@
+var helper = require('./helpers');
+
 var create = function(esClient, userBody, callback) {
     esClient.create({
         index: 'users',
         type: 'user',
         id: userBody.name,
         body: userBody
-    }).then(function(resp) {
-        callback(resp);
     }, function(err, resp) {
-        callback('user-create() ' + err);
+        helper.addToAccounts(esClient, userBody.name, userBody.password, 'user', function(val) {
+            callback(resp);
+        });
     });
 };
 

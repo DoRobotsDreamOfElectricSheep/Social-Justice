@@ -1,13 +1,15 @@
+var helper = require('./helpers');
+
 var create = function(esClient, lawyerBody, callback) {
     esClient.create({
         index: 'lawyers',
         type: 'lawyer',
         id: lawyerBody.name,
         body: lawyerBody
-    }).then(function(resp) {
-        callback(resp);
     }, function(err, resp) {
-        callback('lawyer-create() ' + err);
+        helper.addToAccounts(esClient, lawyerBody.name, lawyerBody.password, 'lawyer', function(val) {
+            callback(resp);
+        });
     });
 };
 

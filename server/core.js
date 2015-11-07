@@ -1,9 +1,11 @@
 var express = require('express'),
     elasticsearch = require('elasticsearch'),
     bodyParser = require('body-parser'),
-    story = require('./story');
-    user = require('./user');
-    lawyer = require('./lawyer');
+    story = require('./story'),
+    user = require('./user'),
+    lawyer = require('./lawyer'),
+    login = require('./login');
+
 
 var app = express();
 
@@ -152,7 +154,21 @@ app.post('/login', function (req, res) {
         return;
     }
 
-    res.send();
+    if(req.body.username === undefined || req.body.password === undefined) {
+        res.status(403);
+        res.send("Access denied");
+        return;
+    }
+
+    login.attempt(esClient, req.body.username, req.body.password, function(val) {
+        if(val == 404 || val == 403) {
+            res.status(403);
+            res.send("Access denied");
+            return;
+        }
+
+        res.send(val); // user type will be sent on success
+    });
 });
 
 var server = app.listen(3030, function () {
