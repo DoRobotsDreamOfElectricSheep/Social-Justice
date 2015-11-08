@@ -100,7 +100,7 @@ body{
 
 .court-icon{
     float:left;
-    background-image: url(court.svg);
+    background-image: url(https://s3-us-west-2.amazonaws.com/social-justice/court.svg);
     width:40px;
     height:40px;
 }
@@ -155,7 +155,7 @@ img{
 }
 
 .pledged-icon{
-    background: url(piggy.png);
+    background: url(https://s3-us-west-2.amazonaws.com/social-justice/piggy.png);
     width: 40px;
     height: 40px;
     background-position: center;
@@ -206,7 +206,7 @@ img{
 .stars-icon{
     width: 59px;
     height: 66px;
-    background-image: url(star.png);
+    background-image: url(https://s3-us-west-2.amazonaws.com/social-justice/star.png);
     background-size: contain;
     background-repeat: no-repeat;
     /* display: inline-block; */
