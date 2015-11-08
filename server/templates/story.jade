@@ -22,21 +22,26 @@ html(lang="en")
           #story
             #story-photo
               iframe(width='480', height='300', src='#{storyVideo}', frameborder='0', allowfullscreen='')
-            #story-stats
-              #court-info
-                #court-icon
-                #court-date
-                  span#court-date-icon #{courtDate}
-                #court-location
-                  span.location-icon #{courtLocation}
-              #donation-info
-                .progress
-                  .progress-bar(role='progressbar', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100', style='width: 60%;')
-                    | 60%
-                span#pledged  Pledged: #{currentlyPledged}
-                span#goal Goal: #{goal}
             h4#story-title #{storyTitle}
             #story-description #{storyDescription}
+            .case-result.result(data-case-id='#{id}')
+                .stars-icon(style='display: block;') #{stars}
+                  .inner-case-result
+                    img.case-picture(src='#{doneeHeadshot}')
+                    .case-title #{storyTitle}
+                    .case-donation-info
+                      .progress
+                        .progress-bar.progress-bar-striped(role='progressbar', aria-valuenow='#{progressPercent}', aria-valuemin='0', aria-valuemax='100', style='width: #{progressPercent}%')
+                          #{progressPercent}
+                    .case-description #{storyDescription}
+                    div
+                      .court-info
+                        .court-icon
+                        .days-left Court in #{daysUntilCourtDate}
+                        .court-location #{courtLocation}
+                      .case-pledged
+                        .pledged-icon
+                        .pledged-amount $ #{currentlyPledged}
           #tabs
             span#story-tab.tab Story
             span#comments-tab.tab

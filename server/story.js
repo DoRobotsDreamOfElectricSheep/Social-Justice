@@ -22,10 +22,16 @@ var get = function(esClient, storyID, callback) {
 };
 
 var search = function(esClient, body, callback) {
+    var searchString = '';
+    if(body.id) {
+        searchString = 'id:' + body.id;
+    } else {
+        searchString = 'storyTitle:' + body.keywords;
+    }
     esClient.search({
         index: 'stories',
         type: 'story',
-        q: 'storyTitle:' + body.keywords
+        q: searchString
     }).then(function(resp) {
         callback(resp.hits.hits);
     }, function(err, resp) {
