@@ -247,6 +247,16 @@
         .login-help{
             font-size: 12px;
         }
+
+        #logo {
+            color: white;
+            position: absolute;
+            z-index: 1000;
+            font-size: 47px;
+            font-weight: bold;
+            left: 24px;
+            top: 14px;
+        }
     </style>
 </head>
 <body ng-app="justiceApp" ng-controller="justiceController">
@@ -295,6 +305,7 @@
         <div style="background-image: url(spot1.jpg)"></div>
     </div>
     <div id="search-bar">
+        <div id="logo">LegalGoGo</div>
         <div class="input-group">
             <input ng-model="search.keywords" type="text" class="form-control" placeholder="Search for..."/>
             <span class="input-group-btn">
@@ -512,7 +523,7 @@
                             setTimeout(function(){
                                 $(".case-result").prepend("<iframe id='myframe' src='" + data[0]._source.storyVideo + "' height='400' width='602' />");
 
-                            }, 1000);
+                            }, 900);
                         }
                         $scope.cases = data;
                     });
