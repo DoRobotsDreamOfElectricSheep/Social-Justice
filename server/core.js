@@ -57,27 +57,7 @@ app.get('/story', function(req, res) {
         if(val !== 404) {
             val.daysUntilCourtDate = moment(val.courtDate, 'yyyy-MM-DD').fromNow(true);
         }
-        var progressPercent = val.currentlyPledged/val.goal;
-        res.render('story', {
-            username: val.username,
-            doneeHeadshot: val.doneeHeadshot,
-            storyVideo: val.storyVideo,
-            doneeLocation: val.doneeLocation,
-            courtDate: val.courtDate,
-            progressPercent: progressPercent,
-            progressStle: 'widget: ' + progressPercent + '%',
-            stars: val.stars,
-            courtLocation: val.courtLocation,
-            currentlyPledged: val.currentlyPledged,
-            goal: val.goal,
-            storyTitle: val.storyTitle,
-            storyDescription: val.storyDescription,
-            commentBadges: val.commentBadges,
-            caseUpdates: val.caseUpdates,
-            donorPicture: val.donorPicture,
-            donorName: val.donorName,
-            donors: val.donors
-        });
+        res.send(val);
     });
 });
 
