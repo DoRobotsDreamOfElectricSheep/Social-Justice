@@ -262,6 +262,13 @@
             top: 14px;
 
         }
+
+        #social{
+            width: 221px;
+            height: 32px;
+            background-image: url(http://www.sharethis.com/images/new/Button4.png);
+        }
+        }
     </style>
 </head>
 <body ng-app="justiceApp" ng-controller="justiceController">
@@ -314,7 +321,7 @@
         <div class="input-group">
             <input ng-model="search.keywords" type="text" class="form-control" placeholder="Search for..."/>
             <span class="input-group-btn">
-                <button ng-click="getCases()" id="search-cases" class="btn btn-default" type="button">Cases</button>
+                <button ng-click="getCases()" id="search-cases" class="btn btn-default" type="button">Stories</button>
                 <button ng-click="getLawyers()" id="search-lawyers" class="btn btn-default" type="button">Lawyers</button>
             </span>
         </div>
@@ -366,6 +373,7 @@
     <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
+<div id="social"></div>
     <div id="main-results">
         <div ng-repeat="result in cases"  class="case-result result" data-case-id="{{result._source.id}}">
             <div class="stars-icon" style="{{result.starStyle}}">{{result._source.stars}}</div>
