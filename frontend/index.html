@@ -59,7 +59,7 @@
 
         img{
             width: 180px;
-            height: 140px;
+            height: 158px;
             float: left;
             margin-right: 10px;
         }
@@ -373,7 +373,6 @@
         </div>
         </div>
         <div ng-repeat="result in lawyers"  class="case-result result" data-case-name="{{result._source.name}}">
-            <iframe src=""></iframe>
             <div class="stars-icon" style="{{result.starStyle}}">{{result._source.stars}}</div>
             <div class="inner-case-result">
                 <img class="case-picture" ng-src="{{result._source.lawyerPicture}}"/>
