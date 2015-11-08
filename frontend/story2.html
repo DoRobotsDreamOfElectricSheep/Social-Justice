@@ -372,7 +372,7 @@
         </div>
         </div>
         <div ng-repeat="result in lawyers"  class="case-result result" data-case-name="{{result._source.name}}">
-            <iframe src=""></iframe>
+
             <div class="stars-icon" style="{{result.starStyle}}">{{result._source.stars}}</div>
             <div class="inner-case-result">
                 <img class="case-picture" ng-src="{{result._source.lawyerPicture}}"/>
@@ -495,10 +495,40 @@
                     });
 
         }
+
+        $(function(){
+            var id = getParameterByName("id");
+
+            $http.post(serviceUrl, angular.toJson({id:id}))
+                    .success(function (data) {
+                        for(var i = 0; i < data.length;i++) {
+                            data[i].progress = data[i]._source.currentlyPledged / data[i]._source.goal * 100;
+                            data[i].progressStyle = "width: " + data[i].progress + "%";
+                            if(data[0]._source.stars)
+                                data[0].starStyle="display:block";
+
+                            //$("#my-story-video").attr("src", data[0]._source.storyVideo);
+
+                            setTimeout(function(){
+                                $(".case-result").prepend("<iframe id='myframe' src='" + data[0]._source.storyVideo + "' height='315' width='420' />");
+
+                            }, 3000);
+                        }
+                        $scope.cases = data;
+                    });
+        });
     });
 
     $("#main-results").on("click", ".case-result", function(){
-        window.location.href = "http://localhost:63342/Social-Justice/frontend/story2.html?id=" + $(this).attr("data-case-id");
+        window.location.href = "http://52.32.221.20:3030/page?=" + $(this).attr("data-case-id");
     });
+
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
 </script>
 </html>
