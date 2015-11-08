@@ -332,7 +332,7 @@
         </div>
     </div>
     <script>
-        $("#login-modal").modal('show');
+//        $("#login-modal").modal('hide');
         $('#loginSubmit').click(function(){
             var data = {'username': $('#loginUser').val(),
                         'password': $('#loginPassword').val() };
@@ -350,7 +350,7 @@
             });
 
             request.fail(function(jqXHR, textStatus) {
-                alert('login failed');
+                $("#login-modal").modal('hide');
             });
         });
 
